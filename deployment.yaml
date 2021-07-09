@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: abckube
+  labels:
+    test: "yes"
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      name: abckube
+      test: "yes"
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: abckube
+      labels:
+        name: abckube
+        test: "yes"
+    spec:
+      containers:
+        - name: abc
+          image: novawebmobi/abckube:1.0.0t
+          env:
+            - name: A_VARIABLE
+              value: "test"
+          ports:
+            - name: http
+              containerPort: 5000
+          imagePullPolicy: Always
+

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myconfig
+data: 
+  config.yml: |
+    # simple yaml
+    version: 1.0
+    log: test
+    available:
+      true: ok
+    learn:
+    - always
+    - now
